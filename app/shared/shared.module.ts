@@ -5,6 +5,8 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { Http, HttpModule, Response } from "@angular/http";
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from "ng2-translate";
+import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
+import { ShareDataService, ParseService } from '~/shared/services';
 export function createTranslateLoader(http: Http) {
     return new TranslateStaticLoader(http, '/assets/i18n/', '.json');
 }
@@ -15,6 +17,9 @@ export function createTranslateLoader(http: Http) {
         NativeScriptFormsModule,
         NativeScriptHttpModule,
         HttpModule,
+        TNSFontIconModule.forRoot({
+            'mdi': 'fonts/material-design-icons.css'
+        }),
         TranslateModule.forRoot({
             provide: TranslateLoader,
             useFactory: (createTranslateLoader),
@@ -22,12 +27,15 @@ export function createTranslateLoader(http: Http) {
         }),
     ],
     providers: [
+        ShareDataService,
+        ParseService
     ],
     exports: [
         NativeScriptModule,
         NativeScriptCommonModule,
         NativeScriptFormsModule,
         NativeScriptHttpModule,
+        TNSFontIconModule,
         TranslateModule
     ],
     schemas: [
