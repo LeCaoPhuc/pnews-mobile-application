@@ -29,23 +29,12 @@ export class HomeComponent implements OnInit {
     onTap(args) {
         console.log("onTap");
         console.log("translate service", (this.translateService.get("AKA_NO_ARCHER.ARCHER") as any).value);
-        // this.http.get("~/assets/i18n/en.json").subscribe(function (res) {
-        //     console.log("success", res.status);
-        // }, function (err) {
-        //     console.log(err);
-        // }, function () {
-        //     console.log("complete");
-        // });
-        // this.http.get("~/assets/i18n/en.json").map(
-        //     function (res) {
-        //         console.log("res.json()");
-        //     })
-        // this.parseService.cloud("hello", {})
-        //     .then(function (res) {
-        //         console.log("res");
-        //     })
-        //     .catch(function (error) {
-        //         console.log("error");
-        //     })
+        this.parseService.cloud("hello", {})
+            .then(function (res) {
+                console.log("res");
+            })
+            .catch(function (error) {
+                console.log("error");
+            })
     }
 }

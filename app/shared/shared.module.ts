@@ -52,6 +52,7 @@ export function createTranslateLoader(http: Http) {
     ]
 })
 export class SharedModule { }
+
 export class CustomTranslateStaticLoader extends TranslateLoader {
     public http: Http;
     public prefix: String;
