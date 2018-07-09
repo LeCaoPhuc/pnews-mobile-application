@@ -125,6 +125,7 @@ module.exports = env => {
                         output: {
                             comments: false,
                         },
+                        mangle: { reserved: nsWebpack.uglifyMangleExcludes },
                         compress: {
                             // The Android SBG has problems parsing the output
                             // when these options are enabled
@@ -215,7 +216,8 @@ module.exports = env => {
                 { from: "**/*.jpg" },
                 { from: "**/*.png" },
                 { from: "**/*.xml" },
-                { from: "assets/**" }
+                { from: "assets/**" },
+                { from: "assets/i18n/*.json" }
             ], { ignore: [`${relative(appPath, appResourcesFullPath)}/**`] }),
             // Generate a bundle starter script and activate it in package.json
             new nsWebpack.GenerateBundleStarterPlugin([

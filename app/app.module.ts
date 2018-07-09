@@ -4,7 +4,7 @@ import { HomeModule } from "./pages/home/home.module";
 import { SharedModule } from "./shared/shared.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { Observable, Subject } from 'rxjs';
+
 @NgModule({
     bootstrap: [
         AppComponent

@@ -11,11 +11,8 @@ export class AppComponent {
         public shareDataService: ShareDataService,
         public parseService: ParseService,
     ) {
-        // setTimeout(function () {
         translate.setDefaultLang('en');
-        translate.use('en');
-        // }, 500)
-
+        translate.use("en");
         parseService.init();
         shareDataService.setData("akaNoArcher", "Atalanta Alter");
     }
