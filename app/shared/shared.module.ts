@@ -53,7 +53,7 @@ export function createTranslateLoader(http: Http) {
 })
 export class SharedModule { }
 
-export class CustomTranslateStaticLoader extends TranslateLoader {
+export class CustomTranslateStaticLoader extends TranslateLoader { // custom class to load json from local to fix error when uglify function http.get
     public http: Http;
     public prefix: String;
     public suffix: String;
@@ -68,7 +68,6 @@ export class CustomTranslateStaticLoader extends TranslateLoader {
         return this.http.get(this.prefix + "/" + lang + this.suffix)
             .pipe()
             .map(function (res) {
-                console.log("getTranslation", res.json());
                 return res.json();
             })
     }

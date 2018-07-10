@@ -8,13 +8,14 @@ import { SharedModule } from "~/shared/shared.module";
 @NgModule({
     imports: [
         NativeScriptCommonModule,
-        NewsItemComponent,
         NativeScriptFormsModule,
         SharedModule
     ],
     declarations: [
         NewsItemComponent
     ],
+    bootstrap: [NewsItemComponent],
+    exports: [NewsItemComponent],
     schemas: [
         NO_ERRORS_SCHEMA
     ]
