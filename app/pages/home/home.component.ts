@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Injectable, ChangeDetectorRef } from "@angular/core";
 import * as moment from 'moment';
 import { TranslateService } from "ng2-translate";
-import { ShareDataService, ParseService } from "~/shared";
+import { ShareDataService, ParseService, SideDrawerService } from "~/shared";
 import { Http } from "@angular/http";
 import { Page, Color } from "tns-core-modules/ui/page/page";
 import * as utils from "utils/utils";
@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
         public translateService: TranslateService,
         public shareDataService: ShareDataService,
         public parseService: ParseService,
+        public sideDrawerService: SideDrawerService,
         public changeDetectorRef: ChangeDetectorRef,
         public http: Http,
         public page: Page
@@ -56,15 +57,16 @@ export class HomeComponent implements OnInit {
     ngAfterViewInit() {
         console.log("ngAfterViewInit");
         var self = this;
-        var interval = setInterval(function () {
-            if (self.drawer) {
-                clearInterval(interval);
-            }
-            else {
-                self.drawer = <RadSideDrawer>app.getRootView();
-                self.changeDetectorRef.detectChanges();
-            }
-        }, 10)
+
+        // var interval = setInterval(function () {
+        //     if (self.drawer) {
+        //         clearInterval(interval);
+        //     }
+        //     else {
+        //         self.drawer = <RadSideDrawer>app.getRootView();
+        //         self.changeDetectorRef.detectChanges();
+        //     }
+        // }, 10)
 
     }
     onTap(args) {
@@ -80,10 +82,10 @@ export class HomeComponent implements OnInit {
     }
     public openDrawer(args) {
         console.log("openDreaw");
-        this.drawer.showDrawer();
+        this.sideDrawerService.openDrawer();
     }
-    public onCloseDrawerTap(args) {
-        this.drawer.closeDrawer();
+    public closeDrawer(args) {
+        this.sideDrawerService.closeDrawer();
     }
     refreshList(args) {
         console.log("args");

@@ -6,11 +6,9 @@
                 <Image height="30" src="~/assets/icon.png"></Image>
                 <Label text="news" class="title-action-bar" verticalAlignment="bottom" marginTop="10" textWrap="true"></Label>
             </StackLayout>
-
-
         </GridLayout>
     </ActionBar>
-    <StackLayout height="500" width="100%">
+    <StackLayout width="100%">
         <GridLayout rows="*" columns="*">
             <PullToRefresh (refresh)="refreshList($event)">
                 <ListView [items]="dataItems">
@@ -21,6 +19,6 @@
             </PullToRefresh>
         </GridLayout>
 
-        <Button text="onClick" (tap)="onTap($event)"></Button>
+
     </StackLayout>
 </StackLayout>
