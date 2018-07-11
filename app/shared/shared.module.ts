@@ -7,6 +7,8 @@ import { Http, HttpModule, Response } from "@angular/http";
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from "ng2-translate";
 import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 import { ShareDataService, ParseService } from '~/shared/services';
+import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
+import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 import { map } from "rxjs-compat/operator/map";
 import "rxjs-compat/add/observable/of";
 import "rxjs-compat/add/operator/share";
@@ -34,6 +36,7 @@ export function createTranslateLoader(http: Http) {
             useFactory: (createTranslateLoader),
             deps: [Http]
         }),
+
     ],
     providers: [
         ShareDataService,
@@ -45,7 +48,9 @@ export function createTranslateLoader(http: Http) {
         NativeScriptFormsModule,
         NativeScriptHttpModule,
         TNSFontIconModule,
-        TranslateModule
+        TranslateModule,
+        NativeScriptUISideDrawerModule,
+        NativeScriptUIListViewModule
     ],
     schemas: [
         NO_ERRORS_SCHEMA

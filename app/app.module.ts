@@ -4,7 +4,8 @@ import { HomeModule } from "./pages/home/home.module";
 import { SharedModule } from "./shared/shared.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-
+import { registerElement } from "nativescript-angular/element-registry";
+registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 @NgModule({
     bootstrap: [
         AppComponent
