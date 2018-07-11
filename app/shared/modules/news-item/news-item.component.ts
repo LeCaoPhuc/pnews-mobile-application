@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import * as moment from 'moment';
 import { TranslateService } from "ng2-translate";
 import { ShareDataService, ParseService } from "~/shared";
-import * as platform from "platform"
+import * as platform from "platform";
 @Component({
     selector: "news-item",
     moduleId: module.id,
