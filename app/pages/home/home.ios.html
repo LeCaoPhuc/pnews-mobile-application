@@ -3,8 +3,8 @@
         <GridLayout columns="50, * ,50" rows="auto" width="100%">
             <Label col="0" [text]="'mdi-menu' | fonticon" class="mdi menu-icon" textWrap="true" (tap)="openDrawer($event)"></Label>
             <StackLayout col="1" col="1" orientation="horizontal" horizontalAlignment="center">
-                <Image height="30" src="~/assets/icon.png"></Image>
-                <Label text="news" class="title-action-bar" verticalAlignment="bottom" marginTop="10" textWrap="true"></Label>
+                <Image height="30" src="res://logo.png"></Image>
+                <Label [text]="'HOME_SCREEN.SUB_TITLE' | translate" class="title-action-bar" verticalAlignment="bottom" marginTop="10" textWrap="true"></Label>
             </StackLayout>
         </GridLayout>
     </ActionBar>

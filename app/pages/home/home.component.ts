@@ -12,7 +12,7 @@ import { RadSideDrawerComponent, SideDrawerType } from "nativescript-ui-sidedraw
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import * as app from "tns-core-modules/application";
 import { ObservableArray } from "tns-core-modules/data/observable-array/observable-array";
-@Injectable()
+
 @Component({
     selector: "ns-home",
     moduleId: module.id,
@@ -71,7 +71,6 @@ export class HomeComponent implements OnInit {
     }
     onTap(args) {
         console.log("onTap");
-        console.log("translate service", (this.translateService.get("AKA_NO_ARCHER.ARCHER") as any).value);
         this.parseService.cloud("hello", {})
             .then(function (res) {
                 console.log("res");
