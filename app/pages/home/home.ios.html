@@ -9,16 +9,7 @@
         </GridLayout>
     </ActionBar>
     <StackLayout width="100%">
-        <GridLayout rows="*" columns="*">
-            <PullToRefresh (refresh)="refreshList($event)">
-                <ListView [items]="dataItems">
-                    <ng-template let-item="item">
-                        <news-item></news-item>
-                    </ng-template>
-                </ListView>
-            </PullToRefresh>
-        </GridLayout>
-
-
+        <news-list [newsList]="dataItems" (onLoadMoreData)="onLoadMore($event)" (onPullToRefresh)="onPullToRefreshInitiated($event)"
+            (onTitleTap)="onTitleItemTap($event)"></news-list>
     </StackLayout>
 </StackLayout>

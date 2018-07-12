@@ -1,5 +1,11 @@
 {
+    "ERROR_MESSAGE": {},
     "HOME_SCREEN": {
         "SUB_TITLE": "news"
+    },
+    "NEWS_LIST_SERVICE": {
+        "ERROR_MESSAGE": {
+            "GET_LIST_FAIL": "Error when get news list"
+        }
     }
 }
