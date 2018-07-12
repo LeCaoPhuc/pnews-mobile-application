@@ -8,8 +8,10 @@
             </StackLayout>
         </GridLayout>
     </ActionBar>
-    <StackLayout width="100%">
-        <news-list [newsList]="dataItems" (onLoadMoreData)="onLoadMore($event)" (onPullToRefresh)="onPullToRefreshInitiated($event)"
+    <GridLayout rows="*" columns="*" width="100%">
+
+        <news-list *ngIf="!isShowLoading" [newsList]="dataItems" (onLoadMoreData)="onLoadMore($event)" (onPullToRefresh)="onPullToRefreshInitiated($event)"
             (onTitleTap)="onTitleItemTap($event)"></news-list>
-    </StackLayout>
+        <ActivityIndicator *ngIf="isShowLoading" busy="true"></ActivityIndicator>
+    </GridLayout>
 </StackLayout>

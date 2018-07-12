@@ -21,8 +21,7 @@ declare var UITableViewCellSelectionStyle: any;
 export class NewsListComponent implements OnInit {
     @ViewChild("listView") listView: ElementRef;
     @Input("newsList") newsList: ObservableArray<any>;
-    @Input() isDataLoading: boolean;
-    @Input() emptyDataText: boolean;
+    @Input() emptyDataText: string;
     @Output("onLoadMoreData") onLoadMoreData: EventEmitter<any>;
     @Output("onPullToRefresh") onPullToRefresh: EventEmitter<any>;
     @Output("onTitleTap") onTitleTap: EventEmitter<any>;

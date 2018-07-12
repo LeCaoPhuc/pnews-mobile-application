@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
     public dataItems: ObservableArray<any>;
     public limit: number = 5;
     public page: number = 1;
+    public isShowLoading: boolean = true;
     // This pattern makes use of Angular’s dependency injection implementation to inject an instance of the ItemService service into this class. 
     // Angular knows about this service because it is included in your app’s main NgModule, defined in app.module.ts.
     constructor(
@@ -49,21 +50,28 @@ export class HomeComponent implements OnInit {
             application.android.startActivity.getWindow().setStatusBarColor(new Color(config.application.STATUS_COLOR).android);
         }
         var self = this;
-        this.newsListService.getListNews({
-            limit: this.limit,
-            page: this.page
-        })
-            .then(function (res: any) {
-                for (var i = 0; i < res.length; i++) {
-                    self.dataItems.push(res[i]);
-                }
-                self.page++;
-                console.log("res");
+        setTimeout(function () {
+            self.newsListService.getListNews({
+                limit: self.limit,
+                page: self.page
+            })
+                .then(function (res: any) {
+                    for (var i = 0; i < res.length; i++) {
+                        self.dataItems.push(res[i]);
+                    }
+                    self.page++;
+                    self.isShowLoading = false;
+                    self.changeDetectorRef.detectChanges();
+                    console.log("res");
 
-            })
-            .catch(function (error) {
-                console.log("error");
-            })
+                })
+                .catch(function (error) {
+                    self.isShowLoading;
+                    self.changeDetectorRef.detectChanges();
+                    console.log("error");
+                })
+        }, 200)
+
 
     }
 
