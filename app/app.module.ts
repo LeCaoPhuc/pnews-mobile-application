@@ -1,9 +1,15 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
-import { HomeModule } from "./pages/home/home.module";
-import { SharedModule } from "./shared/shared.module";
+import { HomeModule } from "./pages"
+import {
+    SharedModule,
+    LeftMenuModule
+} from "./shared";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { registerElement } from "nativescript-angular/element-registry";
+import { NativeScriptUIPhotoZoomModule } from "nativescript-photo-zoom/angular";
+registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 
 @NgModule({
     bootstrap: [
@@ -13,7 +19,8 @@ import { AppComponent } from "./app.component";
         NativeScriptModule,
         AppRoutingModule,
         SharedModule,
-        HomeModule
+        HomeModule,
+        LeftMenuModule,
     ],
     declarations: [
         AppComponent
