@@ -3,6 +3,7 @@
     "HOME_SCREEN": {
         "SUB_TITLE": "news"
     },
+    "NEWS_DETAIL_SCREEN": {},
     "NEWS_LIST_SERVICE": {
         "ERROR_MESSAGE": {
             "GET_LIST_FAIL": "Error when get news list"

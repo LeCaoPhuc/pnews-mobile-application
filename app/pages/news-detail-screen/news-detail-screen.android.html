@@ -1,0 +1,14 @@
+<DockLayout>
+    <ActionBar class="action-bar" dock="top">
+        <GridLayout columns="50, * ,50" rows="auto" width="100%">
+            <Label col="0" [text]="'mdi-arrow-back' | fonticon" class="mdi back-icon" textWrap="true" (tap)="goBack($event)"></Label>
+            <Label col="1" [text]="newsItem.sourcePage" class="title-action-bar text-center" verticalAlignment="bottom"></Label>
+        </GridLayout>
+    </ActionBar>
+    <GridLayout rows="*" columns="*">
+        <WebView width="100%" height="100%" #webView [src]="newsItem.sourceUrl"></WebView>
+        <FlexboxLayout alignItems="center" justifyContent="center" *ngIf="isShowLoading">
+            <ActivityIndicator busy="true"></ActivityIndicator>
+        </FlexboxLayout>
+    </GridLayout>
+</DockLayout>

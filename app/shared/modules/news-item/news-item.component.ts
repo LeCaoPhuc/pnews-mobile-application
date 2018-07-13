@@ -34,6 +34,6 @@ export class NewsItemComponent implements OnInit {
     }
     onTapTitle(args) {
         console.log("onTapTitle item");
-        this.onTitleTap.next(args);
+        this.onTitleTap.next(this.newsItem);
     }
 }

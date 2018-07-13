@@ -1,6 +1,9 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
-import { HomeModule } from "./pages"
+import {
+    HomeModule,
+    NewsDetailModule
+} from "./pages"
 import {
     SharedModule,
     LeftMenuModule
@@ -20,6 +23,7 @@ registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").Pul
         AppRoutingModule,
         SharedModule,
         HomeModule,
+        NewsDetailModule,
         LeftMenuModule,
     ],
     declarations: [
