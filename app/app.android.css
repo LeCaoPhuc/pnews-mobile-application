@@ -18,3 +18,8 @@ refer to http://docs.nativescript.org/ui/theme.
 .mdi {
     font-family: "Material Icons", "MaterialIcons-Regular";
 }
+ActivityIndicator {
+    color: #B266FF;
+    width: 40;
+    height: 40;
+}

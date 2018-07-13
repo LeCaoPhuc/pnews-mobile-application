@@ -6,11 +6,12 @@ import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { Http, HttpModule } from "@angular/http";
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from "ng2-translate";
 import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
-import { ShareDataService, ParseService } from '~/shared/services';
+import { ShareDataService, ParseService, NewsListService } from '~/shared/services';
 import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 import { SideDrawerService } from "./services";
-import { CustomTranslateStaticLoader } from "~/utils"
+import { CustomTranslateStaticLoader } from "~/utils";
+import { PipesModule } from "./"
 export function createTranslateLoader(http: Http) {
     return new CustomTranslateStaticLoader(http, '/assets/i18n/', '.json');
 }
@@ -34,7 +35,8 @@ export function createTranslateLoader(http: Http) {
     providers: [
         ShareDataService,
         ParseService,
-        SideDrawerService
+        SideDrawerService,
+        NewsListService
     ],
     exports: [
         NativeScriptModule,
@@ -43,6 +45,7 @@ export function createTranslateLoader(http: Http) {
         NativeScriptHttpModule,
         TNSFontIconModule,
         TranslateModule,
+        PipesModule,
         NativeScriptUISideDrawerModule,
         NativeScriptUIListViewModule
     ],

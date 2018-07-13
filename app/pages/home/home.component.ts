@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, Injectable, ChangeDetectorRef } from "@angular/core";
+import { Component, OnInit, ViewChild, Injectable, ChangeDetectorRef, ElementRef } from "@angular/core";
 import * as moment from 'moment';
 import { TranslateService } from "ng2-translate";
-import { ShareDataService, ParseService, SideDrawerService } from "~/shared";
+import { ShareDataService, ParseService, SideDrawerService, NewsListService, } from "~/shared";
 import { Http } from "@angular/http";
 import { Page, Color } from "tns-core-modules/ui/page/page";
 import * as utils from "utils/utils";
@@ -23,6 +23,9 @@ export class HomeComponent implements OnInit {
     public frame = frame;
     private drawer: RadSideDrawer;
     public dataItems: ObservableArray<any>;
+    public limit: number = 5;
+    public page: number = 1;
+    public isShowLoading: boolean = true;
     // This pattern makes use of Angular’s dependency injection implementation to inject an instance of the ItemService service into this class. 
     // Angular knows about this service because it is included in your app’s main NgModule, defined in app.module.ts.
     constructor(
@@ -32,15 +35,10 @@ export class HomeComponent implements OnInit {
         public sideDrawerService: SideDrawerService,
         public changeDetectorRef: ChangeDetectorRef,
         public http: Http,
-        public page: Page
+        public currentPage: Page,
+        public newsListService: NewsListService
     ) {
-        this.dataItems = new ObservableArray([{ name: "Atalanta" }, { name: "Achilles" }])
-        for (var i = 0; i < 40; i++) {
-            this.dataItems.push({
-                name: "atalanta" + i
-            })
-        }
-
+        this.dataItems = new ObservableArray([])
     }
 
     ngOnInit(): void {
@@ -51,6 +49,29 @@ export class HomeComponent implements OnInit {
         else {
             application.android.startActivity.getWindow().setStatusBarColor(new Color(config.application.STATUS_COLOR).android);
         }
+        var self = this;
+        setTimeout(function () {
+            self.newsListService.getListNews({
+                limit: self.limit,
+                page: self.page
+            })
+                .then(function (res: any) {
+                    for (var i = 0; i < res.length; i++) {
+                        self.dataItems.push(res[i]);
+                    }
+                    self.page++;
+                    self.isShowLoading = false;
+                    self.changeDetectorRef.detectChanges();
+                    console.log("res");
+
+                })
+                .catch(function (error) {
+                    self.isShowLoading;
+                    self.changeDetectorRef.detectChanges();
+                    console.log("error");
+                })
+        }, 200)
+
 
     }
 
@@ -75,8 +96,8 @@ export class HomeComponent implements OnInit {
             .then(function (res) {
                 console.log("res");
             })
-            .catch(function (error) {
-                console.log("error");
+            .catch(function (err) {
+                console.log("err");
             })
     }
     public openDrawer(args) {
@@ -86,8 +107,61 @@ export class HomeComponent implements OnInit {
     public closeDrawer(args) {
         this.sideDrawerService.closeDrawer();
     }
-    refreshList(args) {
-        console.log("args");
-        args.object.refreshing = false;
+    onLoadMore(args) {
+        var self = this;
+        this.newsListService.getListNews({
+            limit: this.limit,
+            page: this.page + 1
+        })
+            .then(function (res: any) {
+                for (var i = 0; i < res.length; i++) {
+                    self.dataItems.push(res[i]);
+                }
+                self.page++;
+                console.log("res");
+                if (app.android) {
+                    args.object.notifyLoadOnDemandFinished();
+                }
+
+            })
+            .catch(function (error) {
+                if (app.android) {
+                    args.object.notifyLoadOnDemandFinished();
+                }
+                self.page--;
+                console.log("error");
+            })
+    }
+    onPullToRefreshInitiated(args) {
+        var self = this;
+        this.newsListService.getListNews({
+            limit: this.limit,
+            page: 1
+        })
+            .then(function (res: any) {
+                for (var i = 0; i < res.length; i++) {
+                    self.dataItems.push(res[i]);
+                }
+                self.page = 1;
+                if (app.ios) {
+                    args.object.refreshing = false;
+                }
+                else {
+                    args.object.notifyPullToRefreshFinished();
+                }
+
+            })
+            .catch(function (error) {
+                if (app.android) {
+                    args.object.notifyPullToRefreshFinished();
+                }
+                else {
+                    args.object.refreshing = false;
+                }
+                console.log("error");
+            })
+    }
+    onTitleItemTap(args) {
+        console.log("onTitleItemTap")
     }
 }

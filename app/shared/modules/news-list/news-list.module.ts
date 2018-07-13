@@ -2,25 +2,24 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
-import { HomeRoutingModule } from "./home.routing";
-import { HomeComponent } from "./home.component";
+import { NewsListComponent } from "./news-list.component";
+import { NewsItemModule } from "~/shared/modules";
 import { SharedModule } from "~/shared/shared.module";
-import { NewsItemModule, NewsListModule } from "~/shared/modules";
 
 @NgModule({
     imports: [
         NativeScriptCommonModule,
-        HomeRoutingModule,
         NativeScriptFormsModule,
         SharedModule,
-        NewsItemModule,
-        NewsListModule
+        NewsItemModule
     ],
     declarations: [
-        HomeComponent
+        NewsListComponent
     ],
+    bootstrap: [NewsListComponent],
+    exports: [NewsListComponent],
     schemas: [
         NO_ERRORS_SCHEMA
     ]
 })
-export class HomeModule { }
+export class NewsListModule { }
