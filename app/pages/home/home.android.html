@@ -1,5 +1,5 @@
-<StackLayout>
-    <ActionBar class="action-bar">
+<DockLayout>
+    <ActionBar class="action-bar" dock="top">
         <GridLayout columns="50, * ,50" rows="auto" width="100%">
             <Label col="0" [text]="'mdi-menu' | fonticon" class="mdi menu-icon" verticalAlignment="center" textWrap="true" (tap)="openDrawer($event)"></Label>
             <StackLayout col="1" col="1" orientation="horizontal" horizontalAlignment="center">
@@ -9,9 +9,8 @@
         </GridLayout>
     </ActionBar>
     <GridLayout rows="*" columns="*" width="100%">
-
         <news-list *ngIf="!isShowLoading" [newsList]="dataItems" (onLoadMoreData)="onLoadMore($event)" (onPullToRefresh)="onPullToRefreshInitiated($event)"
             (onTitleTap)="onTitleItemTap($event)"></news-list>
         <ActivityIndicator *ngIf="isShowLoading" busy="true"></ActivityIndicator>
     </GridLayout>
-</StackLayout>
+</DockLayout>

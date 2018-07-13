@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, Injectable, ChangeDetectorRef, ElementRef } from "@angular/core";
+import { Router } from "@angular/router";
+import { RouterExtensions } from "nativescript-angular/router";
 import * as moment from 'moment';
 import { TranslateService } from "ng2-translate";
 import { ShareDataService, ParseService, SideDrawerService, NewsListService, } from "~/shared";
-import { Http } from "@angular/http";
-import { Page, Color } from "tns-core-modules/ui/page/page";
+import { Color } from "tns-core-modules/ui/page/page";
 import * as utils from "utils/utils";
 import * as application from "application";
 import * as frame from "ui/frame";
@@ -34,9 +35,8 @@ export class HomeComponent implements OnInit {
         public parseService: ParseService,
         public sideDrawerService: SideDrawerService,
         public changeDetectorRef: ChangeDetectorRef,
-        public http: Http,
-        public currentPage: Page,
-        public newsListService: NewsListService
+        public newsListService: NewsListService,
+        public routerExtensions: RouterExtensions,
     ) {
         this.dataItems = new ObservableArray([])
     }
@@ -161,7 +161,11 @@ export class HomeComponent implements OnInit {
                 console.log("error");
             })
     }
-    onTitleItemTap(args) {
+    onTitleItemTap(newsItem) {
+        this.shareDataService.setData("currentNewsItems", newsItem);
+        this.routerExtensions.navigate(["newsDetailScreen"], {
+            transition: config.TRANSITION_PAGE,
+        });
         console.log("onTitleItemTap")
     }
 }
