@@ -1,0 +1,10 @@
+.item-container {
+    margin: 10 0 10 0;
+}
+.title {
+    font-size: 18;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}

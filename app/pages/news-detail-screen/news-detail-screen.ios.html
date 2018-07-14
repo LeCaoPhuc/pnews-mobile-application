@@ -6,9 +6,39 @@
         </GridLayout>
     </ActionBar>
     <GridLayout rows="*" columns="*">
-        <WebView width="100%" height="100%" #webView [src]="newsItem.sourceUrl"></WebView>
+
+        <!-- <WebView width="100%" height="100%" #webView [src]="newsItem.sourceUrl"></WebView>
         <FlexboxLayout alignItems="center" justifyContent="center" *ngIf="isShowLoading">
             <ActivityIndicator busy="true"></ActivityIndicator>
-        </FlexboxLayout>
+        </FlexboxLayout> -->
+
+        <ListView #listView id="listView" [items]="dataItem" height="100%" width="100%" separatorColor="transparent" [itemTemplateSelector]="templateSelector">
+            <ng-template nsTemplateKey="title" let-item="item" let-index="index">
+                <FlexboxLayout justifyContent="center" class="item-container">
+                    <Label [text]="item.content" textWrap="true" class="title"></Label>
+                </FlexboxLayout>
+            </ng-template>
+            <ng-template nsTemplateKey="subtitle" let-item="item" let-index="index">
+                <FlexboxLayout justifyContent="center">
+                    <Label [text]="item.content" textWrap="true"></Label>
+                </FlexboxLayout>
+            </ng-template>
+            <ng-template nsTemplateKey="image" let-item="item" let-index="index">
+                <StackLayout [width]="screenWidth">
+                    <Image [src]="item.content" 0></Image>
+                </StackLayout>
+
+            </ng-template>
+            <ng-template nsTemplateKey="text" let-item="item" let-index="index">
+                <FlexboxLayout justifyContent="center">
+                    <Label [text]="item.content" textWrap="true"></Label>
+                </FlexboxLayout>
+            </ng-template>
+            <ng-template nsTemplateKey="end" let-item="item" let-index="index">
+                <FlexboxLayout justifyContent="center">
+                    <Label [text]="item.content" textWrap="true"></Label>
+                </FlexboxLayout>
+            </ng-template>
+        </ListView>
     </GridLayout>
 </DockLayout>
