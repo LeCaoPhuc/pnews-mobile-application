@@ -29,49 +29,55 @@ export class NewsDetailComponent implements OnInit {
     public isShowLoading = true;
     public arrData = [
         {
-            type: "title",
-            content: "YouTube vừa tung ra công cụ Copyright Match để hạn chế reup video trái phép"
+            type: "content",
+            content: "<b>YouTube vừa tung ra công cụ Copyright Match để hạn chế reup video trái phép</b>"
         },
         {
             type: "image",
-            content: "https://images3.alphacoders.com/712/712915.jpg"
+            content: "http://genknews.genkcdn.vn/thumb_w/660/2018/7/12/youtube-15313964050501579276085.jpg"
         },
         {
-            type: "subtitle",
+            type: "content",
             content: "Khác với phần mềm Content ID được tung ra trước đó, Copyright Match sẽ được phổ biến cho nhiều người dùng hơn, cụ thể là những kênh YouTube có lượng người đăng ký hơn 100.000."
         },
         {
-            type: "text",
+            type: "content",
             content: "YouTube vừa tung ra một công cụ cho phép chủ nhân của video kiểm tra xem thành phẩm của họ có bị đánh cắp. Giờ đây, mỗi khi một video được đăng tải lên YouTube, nền tảng này sẽ quét và đối chiếu xem liệu nội dung này đã tồn tại hoặc có nhiều điểm tương đồng với các video khác trên website này hay không. Nó chỉ nhận diện những video hoàn chỉnh chứ không phải từng đoạn clip ngắn."
         },
         {
             type: "image",
-            content: "http://static.minitokyo.net/downloads/37/34/716737.jpg",
+            content: "http://genknews.genkcdn.vn/thumb_w/660/2018/7/12/akrales17080217430242-1531396405053141884922.jpg",
         },
         {
-            type: "text",
+            type: "content",
             content: 'Công cụ này – được YouTube đặt tên là Copyright Match, sẽ được phát hành cho những kênh YouTube có hơn 100.000 người đăng ký vào tuần sau. Nó cũng sẽ "cập bến" cho nhiều người dùng khác trong những tháng tới. Sau khi kích hoạt, Copyright Match sẽ báo cáo cho chủ nhân video nếu một bản sao video của họ xuất hiện trên YouTube. Nếu có kết quả, họ sẽ có thể lựa chọn một trong những giải pháp: không làm gì cả, liên lạc với người sao chép nội dung của mình hoặc yêu cầu YouTube loại bỏ video này.'
         },
         {
-            type: "text",
+            type: "content",
             content: 'Bạn phải là người đầu tiên đăng tải video này thì mới được Copyright Match công nhận là chủ nhân, vì vậy có một lỗ hổng là nếu ai đó đã tải "lậu" video của bạn trên Vimeo hay Facebook, đăng lên YouTube trước bạn thì công cụ này cũng sẽ không nhận ra.'
         },
         {
             type: "image",
-            content: 'https://static.zerochan.net/Red.Archer.full.1619593.jpg'
+            content: 'http://genknews.genkcdn.vn/thumb_w/660/2018/7/12/381e43174fc3d8d56b5924f464e7351f-1531396405051638784559.png'
         },
         {
-            type: "text",
+            type: "content",
             content: "Trước đây, Youtube cũng có một phần mềm tương tự lấy tên Content ID. Nó sẽ giúp người nắm giữ bản quyền video tìm những kẻ sử dụng nội dung của họ mà không được sự cho phép. Rất ít người có được quyền truy cập công cụ này và khác với Copyright Match, Content ID cho phép chủ nhân kiếm tiền từ các video được tải lên trái phép."
         },
         {
-            type: "end",
-            content: "Theo TheVerge"
+            type: "content",
+            content: '<i style="text-align: right">Theo TheVerge<i>'
         }
     ];
     public dataItem: ObservableArray<any>;
     public screenHeight: number;
     public screenWidth: number;
+    public htmlString: string = `<html>
+    <p> test </p>
+    <h2 style="background-color: #ff0000">Test he2</h2>
+    <img  src="https://images3.alphacoders.com/712/712915.jpg" />
+    
+    </html>`;
     @ViewChild("webView") webView: ElementRef;
     constructor(
         public translateService: TranslateService,
@@ -108,7 +114,12 @@ export class NewsDetailComponent implements OnInit {
             args.object.ios.showsVerticalScrollIndicator = false;
         }
     }
-
+    onWebViewLoaded(args) {
+        const webview = args.object;
+        if (app.android) {
+            webview.android.getSettings().setDisplayZoomControls(false);
+        }
+    }
     ngAfterViewInit() {
         // let webview: WebView = this.webView.nativeElement;
         // var self = this;

@@ -10,7 +10,7 @@
         <FlexboxLayout alignItems="center" justifyContent="center" *ngIf="isShowLoading">
             <ActivityIndicator busy="true"></ActivityIndicator>
         </FlexboxLayout> -->
-        <ScrollView height="100%" (loaded)="onScrollViewLoaded($event)">
+        <!-- <ScrollView height="100%" (loaded)="onScrollViewLoaded($event)">
             <StackLayout class="">
                 <FlexboxLayout justifyContent="center" class="item-container" *ngFor="let item of arrData">
                     <Label *ngIf="item.type =='title'" [text]="item.content" textWrap="true" class="title" width="100%"></Label>
@@ -20,6 +20,23 @@
                     <Image *ngIf="item.type =='image'" stretch="aspectFit" [src]="item.content" useCache="true"></Image>
                 </FlexboxLayout>
             </StackLayout>
+        </ScrollView> -->-
+        <!-- <StackLayout>
+            <HtmlView [html]="htmlString"></HtmlView>
+            <Label text="312312312321" textWrap="true"></Label>
+            <HtmlView [html]="htmlString"></HtmlView>
+            <Image width="200" height="200" src="https://images3.alphacoders.com/712/712915.jpg"></Image>
+            <HtmlView [html]="htmlString"></HtmlView>
+        </StackLayout> -->
+        <ScrollView height="100%" (loaded)="onScrollViewLoaded($event)">
+            <StackLayout>
+                <FlexboxLayout justifyContent="center" class="item-container" *ngFor="let item of arrData">
+                    <HtmlView *ngIf="item.type =='content'" [html]="item.content" width="100%"></HtmlView>
+                    <Image *ngIf="item.type =='image'" stretch="aspectFit" [src]="item.content" useCache="true"></Image>
+                </FlexboxLayout>
+            </StackLayout>
         </ScrollView>
+        <!-- <WebView (loaded)="onWebViewLoaded($event)" [src]="htmlString"></WebView> -->
+
     </GridLayout>
 </DockLayout>
