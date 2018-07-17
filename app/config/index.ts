@@ -6,6 +6,12 @@ export let config = {
         "DATABASE_NAME": "genk"
     },
     application: {
-        "APP_NAME": "PNEWS"
+        "APP_NAME": "PNEWS",
+        "STATUS_COLOR": "#8E24AA"
+    },
+    TRANSITION_PAGE: {
+        name: "fade",
+        // duration: 100,
+        // curve: "easeOut"
     }
 };

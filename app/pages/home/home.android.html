@@ -1,6 +1,16 @@
-<StackLayout height="500" width="100%">
-    <Label [text]="'AKA_NO_ARCHER.ARCHER' | translate" textWrap="true"></Label>
-    <Label [text]="'mdi-dashboard' | fonticon" color="red" class="mdi" textWrap="true"></Label>
-    <Button text="onClick" (tap)="onTap($event)"></Button>
-
-</StackLayout>
+<DockLayout>
+    <ActionBar class="action-bar" dock="top">
+        <GridLayout columns="50, * ,50" rows="auto" width="100%">
+            <Label col="0" [text]="'mdi-menu' | fonticon" class="mdi menu-icon" verticalAlignment="center" textWrap="true" (tap)="openDrawer($event)"></Label>
+            <StackLayout col="1" col="1" orientation="horizontal" horizontalAlignment="center">
+                <Image height="30" src="~/assets/icon.png"></Image>
+                <Label text="news" class="title-action-bar" verticalAlignment="bottom" marginTop="10" textWrap="true"></Label>
+            </StackLayout>
+        </GridLayout>
+    </ActionBar>
+    <GridLayout rows="*" columns="*" width="100%">
+        <news-list *ngIf="!isShowLoading" [newsList]="dataItems" (onLoadMoreData)="onLoadMore($event)" (onPullToRefresh)="onPullToRefreshInitiated($event)"
+            (onTitleTap)="onTitleItemTap($event)"></news-list>
+        <ActivityIndicator *ngIf="isShowLoading" busy="true"></ActivityIndicator>
+    </GridLayout>
+</DockLayout>

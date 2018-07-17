@@ -1,0 +1,10 @@
+<GridLayout rows="*" columns="*">
+    <PullToRefresh (refresh)="onPullToRefreshInitiated($event)">
+        <ListView *ngIf="newsList" #listView [items]="newsList" separatorColor="transparent" (loadMoreItems)="onLoadMore($event)"
+            (itemLoading)="onItemLoadingIOS($event)">
+            <ng-template let-item="item">
+                <news-item (titleTap)="onTapTitle($event)" [newsItem]="item"></news-item>
+            </ng-template>
+        </ListView>
+    </PullToRefresh>
+</GridLayout>

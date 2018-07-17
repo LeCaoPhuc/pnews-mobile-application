@@ -1,0 +1,8 @@
+<GridLayout rows="*" columns="*">
+    <RadListView *ngIf="newsList" #listView [items]="newsList" loadOnDemandMode="Auto" (loadMoreDataRequested)="onLoadMore($event)"
+        pullToRefresh="true" (pullToRefreshInitiated)="onPullToRefreshInitiated($event)">
+        <ng-template tkListItemTemplate let-item="item">
+            <news-item (titleTap)="onTapTitle($event)" [newsItem]="item"></news-item>
+        </ng-template>
+    </RadListView>
+</GridLayout>

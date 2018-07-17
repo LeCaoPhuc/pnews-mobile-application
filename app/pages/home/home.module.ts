@@ -5,13 +5,16 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { HomeRoutingModule } from "./home.routing";
 import { HomeComponent } from "./home.component";
 import { SharedModule } from "~/shared/shared.module";
+import { NewsItemModule, NewsListModule } from "~/shared/modules";
 
 @NgModule({
     imports: [
         NativeScriptCommonModule,
         HomeRoutingModule,
         NativeScriptFormsModule,
-        SharedModule
+        SharedModule,
+        NewsItemModule,
+        NewsListModule
     ],
     declarations: [
         HomeComponent
