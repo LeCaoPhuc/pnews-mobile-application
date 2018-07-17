@@ -14,12 +14,9 @@
         </FlexboxLayout> -->
 
         <ScrollView height="100%" (loaded)="onScrollViewLoaded($event)">
-            <StackLayout class="">
+            <StackLayout>
                 <FlexboxLayout justifyContent="center" class="item-container" *ngFor="let item of arrData">
-                    <Label *ngIf="item.type =='title'" [text]="item.content" textWrap="true" class="title" width="100%"></Label>
-                    <Label *ngIf="item.type =='subtitle'" [text]="item.content" textWrap="true" width="100%"></Label>
-                    <Label *ngIf="item.type =='text'" [text]="item.content" textWrap="true" width="100%"></Label>
-                    <Label *ngIf="item.type =='end'" [text]="item.content" textWrap="true" class="end-text" width="100%"></Label>
+                    <HtmlView *ngIf="item.type =='content'" [html]="item.content" width="100%"></HtmlView>
                     <Image *ngIf="item.type =='image'" stretch="aspectFit" [src]="item.content" useCache="true"></Image>
                 </FlexboxLayout>
             </StackLayout>
