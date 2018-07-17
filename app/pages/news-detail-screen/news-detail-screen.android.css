@@ -1,0 +1,17 @@
+.item-container {
+    margin: 10 5 10 5;
+    color: #000000 ;
+}
+.title {
+    font-size: 18;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+.end-text {
+    font-size: 14;
+    color: #000000 ;
+    font-style: italic;
+    text-align: right;
+}
