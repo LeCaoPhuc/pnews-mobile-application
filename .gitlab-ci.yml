@@ -1,0 +1,28 @@
+stages:
+  - sonarqube-test
+  - build
+
+sonarqube_job: 
+  stage: sonarqube-test
+  image: hoangle2506/gitlab-sonar-scanner-docker:latest
+  only: 
+    - sprint-1-develop
+  tags:
+    - mobile-2
+  script: 
+    - sonar-scanner
+
+build_android_job: 
+  stage: build
+  image: hoangle2506/nativescript-docker:latest
+  only: 
+    - sprint-1-develop
+  tags:
+    - mobile-2
+  script: 
+    - npm i
+    - tns build android --bundle --env.uglify --env.snapshot --env.aot
+  artifacts: 
+    name: build_android
+    paths:
+      - platforms/android/app/build/outputs/apk/
