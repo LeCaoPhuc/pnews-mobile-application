@@ -1,8 +1,9 @@
 <GridLayout rows="auto" columns="*" class="container" *ngIf="newsItem">
     <GridLayout rows="auto, auto, auto" columns="auto,*" class="container-content">
-        <FlexboxLayout backgroundColor="white">
-            <!-- <FrescoDrawee placeholderImageUri="res://logo" stretch="aspectFill" [imageUri]="newsItem.imageUrl"></FrescoDrawee> -->
-        </FlexboxLayout>
+        <Image verticalAlignment="top" [width]="screenWidth/2" [src]="newsItem.imageUrl"></Image>
+        <!-- <FlexboxLayout backgroundColor="white">
+            <FrescoDrawee placeholderImageUri="res://logo" stretch="aspectFill" [imageUri]="newsItem.imageUrl"></FrescoDrawee>
+        </FlexboxLayout> -->
         <Label col="1" verticalAlignment="top" [text]="newsItem.title" class="title" textWrap="true" (tap)="onTapTitle($event)"></Label>
         <Label row="1" colSpan="2" [text]="newsItem.subContent" class="content-short" textWrap="true"></Label>
         <GridLayout row="2" colSpan="2" rows="auto,10, auto" columns="*,*" marginTop="10">
