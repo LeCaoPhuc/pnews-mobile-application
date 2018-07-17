@@ -5,14 +5,26 @@
             <Label col="1" [text]="newsItem.sourcePage" class="title-action-bar text-center" verticalAlignment="bottom"></Label>
         </GridLayout>
     </ActionBar>
-    <GridLayout rows="*" columns="*">
+    <GridLayout rows="auto,*" columns="*">
+        <!-- <Button text="onCLick" (tap)="onTap($event)"></Button> -->
 
         <!-- <WebView width="100%" height="100%" #webView [src]="newsItem.sourceUrl"></WebView>
         <FlexboxLayout alignItems="center" justifyContent="center" *ngIf="isShowLoading">
             <ActivityIndicator busy="true"></ActivityIndicator>
         </FlexboxLayout> -->
 
-        <ListView #listView id="listView" [items]="dataItem" height="100%" width="100%" separatorColor="transparent" [itemTemplateSelector]="templateSelector">
+        <ScrollView height="100%" (loaded)="onScrollViewLoaded($event)">
+            <StackLayout class="">
+                <FlexboxLayout justifyContent="center" class="item-container" *ngFor="let item of arrData">
+                    <Label *ngIf="item.type =='title'" [text]="item.content" textWrap="true" class="title" width="100%"></Label>
+                    <Label *ngIf="item.type =='subtitle'" [text]="item.content" textWrap="true" width="100%"></Label>
+                    <Label *ngIf="item.type =='text'" [text]="item.content" textWrap="true" width="100%"></Label>
+                    <Label *ngIf="item.type =='end'" [text]="item.content" textWrap="true" class="end-text" width="100%"></Label>
+                    <Image *ngIf="item.type =='image'" stretch="aspectFit" [src]="item.content" useCache="true"></Image>
+                </FlexboxLayout>
+            </StackLayout>
+        </ScrollView>
+        <!-- <ListView row="1" #listView id="listView" [items]="dataItem" height="100%" width="100%" separatorColor="transparent" [itemTemplateSelector]="templateSelector">
             <ng-template nsTemplateKey="title" let-item="item" let-index="index">
                 <FlexboxLayout justifyContent="center" class="item-container">
                     <Label [text]="item.content" textWrap="true" class="title"></Label>
@@ -24,10 +36,9 @@
                 </FlexboxLayout>
             </ng-template>
             <ng-template nsTemplateKey="image" let-item="item" let-index="index">
-                <StackLayout [width]="screenWidth">
-                    <Image [src]="item.content" 0></Image>
-                </StackLayout>
-
+                <FlexboxLayout backgroundColor="white" [width]="screenWidth">
+                    <Image stretch="aspectFit" [src]="item.content"></Image>
+                </FlexboxLayout>
             </ng-template>
             <ng-template nsTemplateKey="text" let-item="item" let-index="index">
                 <FlexboxLayout justifyContent="center">
@@ -39,6 +50,6 @@
                     <Label [text]="item.content" textWrap="true"></Label>
                 </FlexboxLayout>
             </ng-template>
-        </ListView>
+        </ListView> -->
     </GridLayout>
 </DockLayout>

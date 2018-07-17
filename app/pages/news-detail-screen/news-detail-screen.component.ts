@@ -23,6 +23,7 @@ import * as platform from "platform";
     styleUrls: ["./news-detail-screen.css"],
 })
 export class NewsDetailComponent implements OnInit {
+    @ViewChild("listView") listView: ElementRef;
     public drawer: RadSideDrawer;
     public newsItem: NewsModel;
     public isShowLoading = true;
@@ -33,7 +34,7 @@ export class NewsDetailComponent implements OnInit {
         },
         {
             type: "image",
-            content: "http://genknews.genkcdn.vn/thumb_w/660/2018/7/12/akrales17080217430242-1531396405053141884922.jpg"
+            content: "https://images3.alphacoders.com/712/712915.jpg"
         },
         {
             type: "subtitle",
@@ -45,7 +46,7 @@ export class NewsDetailComponent implements OnInit {
         },
         {
             type: "image",
-            content: "http://genknews.genkcdn.vn/thumb_w/660/2018/7/12/youtube-15313964050501579276085.jpg",
+            content: "http://static.minitokyo.net/downloads/37/34/716737.jpg",
         },
         {
             type: "text",
@@ -57,7 +58,7 @@ export class NewsDetailComponent implements OnInit {
         },
         {
             type: "image",
-            content: 'http://genknews.genkcdn.vn/thumb_w/660/2018/7/12/381e43174fc3d8d56b5924f464e7351f-1531396405051638784559.png'
+            content: 'https://static.zerochan.net/Red.Archer.full.1619593.jpg'
         },
         {
             type: "text",
@@ -86,7 +87,9 @@ export class NewsDetailComponent implements OnInit {
         this.screenWidth = platform.screen.mainScreen.widthDIPs;
         this.screenHeight = platform.screen.mainScreen.heightDIPs;
     }
-
+    onTap(args) {
+        this.listView.nativeElement.refresh();
+    }
     ngOnInit() {
         if (app.ios) {
             let controller = frame.topmost().ios.controller;
@@ -95,6 +98,15 @@ export class NewsDetailComponent implements OnInit {
             console.log("ngOnInit");
         }
 
+    }
+
+    onScrollViewLoaded(args) {
+        if (app.android) {
+            args.object.android.setVerticalScrollBarEnabled(false);
+        }
+        else {
+            args.object.ios.showsVerticalScrollIndicator = false;
+        }
     }
 
     ngAfterViewInit() {

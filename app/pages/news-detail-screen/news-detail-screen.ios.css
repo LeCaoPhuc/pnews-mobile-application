@@ -1,5 +1,5 @@
 .item-container {
-    margin: 10 0 10 0;
+    margin: 10 5 10 5;
 }
 .title {
     font-size: 18;
@@ -7,4 +7,10 @@
     margin: 0;
     padding: 0;
     text-align: left;
+}
+.end-text {
+    font-size: 18;
+    color: #000000 ;
+    font-style: italic;
+    text-align: right;
 }
